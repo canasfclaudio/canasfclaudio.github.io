@@ -3,144 +3,520 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maestro de Obra — Construcción y Remodelación</title>
+    <meta name="description" content="Claudio Francisco Cañas — Maestro de Obra con más de 40 años de experiencia en construcción, remodelación, gasfitería, electricidad y terminaciones. Presupuesto sin costo.">
+    <title>Claudio Cañas — Maestro de Obra con 40+ Años de Experiencia</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; }
 
         /* Navegación */
-        nav { background: #1a1a2e; padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
-        nav a { color: #fff; text-decoration: none; margin-right: 1.5rem; font-weight: 500; }
+        nav { background: #1a1a2e; padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        nav .logo { color: #fff; font-weight: 700; font-size: 1.1rem; }
+        nav .logo span { color: #e94560; }
+        nav ul { list-style: none; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        nav a { color: #fff; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
         nav a:hover { color: #e94560; }
 
-        /* Encabezado principal */
-        .hero { background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%); color: #fff; padding: 5rem 2rem; text-align: center; }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; opacity: 0.9; }
-        .btn { display: inline-block; background: #e94560; color: #fff; padding: 0.9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; }
-        .btn:hover { background: #c73652; }
+        /* Hero */
+        .hero { background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%); color: #fff; padding: 6rem 2rem 5rem; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(233,69,96,0.15), transparent 70%); border-radius: 50%; }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 1rem; position: relative; }
+        .hero h1 span { color: #e94560; }
+        .hero .subtitle { font-size: 1.25rem; max-width: 750px; margin: 0 auto 1rem; opacity: 0.95; position: relative; }
+        .hero .tagline { font-size: 1rem; opacity: 0.75; margin-bottom: 2.5rem; position: relative; }
+        .hero .botones { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+        .btn { display: inline-block; background: #e94560; color: #fff; padding: 0.9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.2s; }
+        .btn:hover { background: #c73652; transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 2px solid #e94560; color: #fff; }
+        .btn-outline:hover { background: #e94560; }
+
+        /* Estadísticas */
+        .stats { background: #0f0f1e; padding: 2rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+        .stat { text-align: center; color: #fff; }
+        .stat .num { font-size: 2.2rem; font-weight: 700; color: #e94560; display: block; }
+        .stat .label { font-size: 0.9rem; opacity: 0.8; }
+
+        /* Secciones generales */
+        section { padding: 4rem 2rem; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        h2 { text-align: center; font-size: 2rem; margin-bottom: 0.5rem; color: #1a1a2e; }
+        .subtitulo { text-align: center; color: #666; margin-bottom: 2.5rem; font-size: 1.05rem; }
+        .linea { width: 60px; height: 4px; background: #e94560; margin: 0 auto 2rem; border-radius: 2px; }
+
+        /* Sobre mí */
+        .sobre-mi { background: #fff; }
+        .sobre-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2.5rem; align-items: center; }
+        .sobre-grid .avatar { width: 100%; max-width: 280px; aspect-ratio: 1; background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #e94560; font-size: 5rem; font-weight: 700; margin: 0 auto; }
+        .sobre-texto p { margin-bottom: 1rem; color: #444; }
+        .sobre-texto strong { color: #1a1a2e; }
 
         /* Servicios */
-        .servicios { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
-        .servicios h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #1a1a2e; }
-        .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-        .servicio { background: #f4f4f8; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #e94560; font-weight: 500; }
+        .servicios { background: #f9f9fb; }
+        .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .servicio { background: #fff; padding: 1.8rem 1.5rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s; border-top: 3px solid #e94560; }
+        .servicio:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+        .servicio .icono { font-size: 2rem; margin-bottom: 0.5rem; }
+        .servicio h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #1a1a2e; }
+        .servicio p { font-size: 0.9rem; color: #666; }
+
+        /* Por qué elegirme */
+        .porque { background: #fff; }
+        .grid-porque { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .porque-item { text-align: center; padding: 1.5rem; }
+        .porque-item .icono { font-size: 2.5rem; margin-bottom: 0.8rem; }
+        .porque-item h3 { font-size: 1.05rem; margin-bottom: 0.5rem; color: #1a1a2e; }
+        .porque-item p { font-size: 0.9rem; color: #666; }
+
+        /* Proceso */
+        .proceso { background: #f9f9fb; }
+        .pasos { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+        .paso { background: #fff; padding: 1.8rem 1.5rem; border-radius: 10px; position: relative; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .paso .num { position: absolute; top: -15px; left: 1.5rem; background: #e94560; color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
+        .paso h3 { margin-top: 1rem; margin-bottom: 0.5rem; color: #1a1a2e; font-size: 1.05rem; }
+        .paso p { font-size: 0.9rem; color: #666; }
 
         /* Trabajos */
-        .trabajos { padding: 4rem 2rem; background: #f9f9fb; }
-        .trabajos h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; }
-        .grid-fotos { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
-        .foto-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
-        .foto-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .trabajos { background: #fff; }
+        .grid-fotos { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+        .foto-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: transform 0.2s; }
+        .foto-card:hover { transform: scale(1.02); }
+        .foto-card img { width: 100%; height: 220px; object-fit: cover; display: block; cursor: pointer; transition: opacity 0.2s; }
+        .foto-card img:hover { opacity: 0.9; }
         .foto-card p { padding: 0.8rem 1rem; font-size: 0.9rem; color: #555; }
 
-        /* Contacto */
-        .contacto { background: #1a1a2e; color: #fff; padding: 4rem 2rem; text-align: center; }
-        .contacto h2 { font-size: 1.8rem; margin-bottom: 1.5rem; }
-        .contacto a { color: #e94560; text-decoration: none; font-size: 1.1rem; }
+        /* Testimonios */
+        .testimonios { background: #f9f9fb; }
+        .grid-testimonios { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .testimonio { background: #fff; padding: 1.8rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .testimonio .estrellas { color: #f5b301; margin-bottom: 0.8rem; font-size: 1.1rem; }
+        .testimonio p { font-style: italic; color: #444; margin-bottom: 1rem; }
+        .testimonio .autor { font-weight: 600; color: #1a1a2e; font-size: 0.9rem; }
 
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 1.7rem; }
-            .hero { padding: 3rem 1.2rem; }
+        /* FAQ */
+        .faq { background: #fff; }
+        .faq-item { border-bottom: 1px solid #eee; padding: 1.2rem 0; max-width: 800px; margin: 0 auto; }
+        .faq-item h3 { font-size: 1.05rem; color: #1a1a2e; margin-bottom: 0.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item h3::after { content: '+'; color: #e94560; font-size: 1.4rem; font-weight: 300; }
+        .faq-item.abierto h3::after { content: '−'; }
+        .faq-item .respuesta { display: none; color: #666; font-size: 0.95rem; padding-top: 0.3rem; }
+        .faq-item.abierto .respuesta { display: block; }
+
+        /* Contacto */
+        .contacto { background: #1a1a2e; color: #fff; text-align: center; }
+        .contacto h2 { color: #fff; }
+        .contacto .subtitulo { color: rgba(255,255,255,0.75); }
+        .contacto .linea { background: #e94560; }
+        .contacto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto 2rem; }
+        .contacto-item { background: rgba(255,255,255,0.05); padding: 1.5rem 1rem; border-radius: 10px; transition: background 0.2s; }
+        .contacto-item:hover { background: rgba(255,255,255,0.1); }
+        .contacto-item .icono { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .contacto-item a { color: #e94560; text-decoration: none; font-weight: 500; }
+        .contacto-item a:hover { text-decoration: underline; }
+        .contacto .cta-final { margin-top: 2rem; font-size: 1rem; opacity: 0.85; }
+
+        /* Footer */
+        footer { background: #0f0f1e; color: rgba(255,255,255,0.6); text-align: center; padding: 1.5rem 2rem; font-size: 0.85rem; }
+        footer a { color: #e94560; text-decoration: none; }
+
+        /* WhatsApp flotante */
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: #fff; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; text-decoration: none; box-shadow: 0 4px 12px rgba(37,211,102,0.4); z-index: 200; transition: transform 0.2s; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* Animación al aparecer */
+        .animar { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+        .animar.visible { opacity: 1; transform: translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 1.9rem; }
+            .hero { padding: 4rem 1.2rem 3rem; }
+            .sobre-grid { grid-template-columns: 1fr; text-align: center; }
+            .stats { gap: 1.5rem; padding: 1.5rem 1rem; }
+            .stat .num { font-size: 1.6rem; }
+            nav { padding: 1rem; }
+            nav ul { gap: 1rem; }
+            h2 { font-size: 1.5rem; }
+            section { padding: 3rem 1.2rem; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#servicios">Servicios</a>
-        <a href="#trabajos">Trabajos</a>
-        <a href="#contacto">Contacto</a>
+        <div class="logo">Claudio <span>Cañas</span></div>
+        <ul>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#trabajos">Trabajos</a></li>
+            <li><a href="#testimonios">Opiniones</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
     </nav>
 
+    <!-- HERO -->
     <section class="hero">
-        <h1>Maestro de Obra y Servicios Generales</h1>
-        <p>Construcción, remodelación, instalaciones y terminaciones. Años de experiencia en proyectos residenciales y comerciales.</p>
-        <a href="#contacto" class="btn">Solicitar Presupuesto</a>
+        <h1>Maestro de Obra con <span>Más de 40 Años</span> de Experiencia</h1>
+        <p class="subtitle">Construcción, remodelación, instalaciones y terminaciones de calidad para tu hogar o negocio.</p>
+        <p class="tagline">Claudio Francisco Cañas — Trabajo responsable, honesto y garantizado.</p>
+        <div class="botones">
+            <a href="#contacto" class="btn">Solicitar Presupuesto Gratis</a>
+            <a href="#trabajos" class="btn btn-outline">Ver Mis Trabajos</a>
+        </div>
     </section>
 
+    <!-- ESTADÍSTICAS -->
+    <div class="stats">
+        <div class="stat"><span class="num">40+</span><span class="label">Años de experiencia</span></div>
+        <div class="stat"><span class="num">500+</span><span class="label">Trabajos realizados</span></div>
+        <div class="stat"><span class="num">100%</span><span class="label">Clientes satisfechos</span></div>
+        <div class="stat"><span class="num">12</span><span class="label">Especialidades</span></div>
+    </div>
+
+    <!-- SOBRE MÍ -->
+    <section id="sobre-mi" class="sobre-mi">
+        <div class="container">
+            <h2>Sobre Mí</h2>
+            <div class="linea"></div>
+            <div class="sobre-grid">
+                <div class="avatar">CC</div>
+                <div class="sobre-texto">
+                    <p>Mi nombre es <strong>Claudio Francisco Cañas</strong> y llevo <strong>más de 40 años dedicado al rubro de la construcción</strong>. Comencé muy joven en el oficio, aprendiendo de maestros antiguos y perfeccionando cada técnica con el paso de los años.</p>
+                    <p>Durante estas cuatro décadas he trabajado en <strong>cientos de proyectos residenciales y comerciales</strong>: desde pequeñas reparaciones hasta construcciones completas, techumbres, instalaciones de gasfitería, electricidad, terminaciones y estructuras metálicas.</p>
+                    <p>Mi compromiso es simple: <strong>trabajo bien hecho, plazos respetados y precios justos</strong>. Cada cliente recibe un trato directo, sin intermediarios, y con la experiencia de quien conoce el oficio a fondo.</p>
+                    <p>Si buscas un maestro de obra de confianza, con años de experiencia real y trabajos que puedes ver, estás en el lugar correcto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
     <section id="servicios" class="servicios">
-        <h2>Servicios</h2>
-        <div class="grid-servicios">
-            <div class="servicio">Construcción</div>
-            <div class="servicio">Albañilería</div>
-            <div class="servicio">Gasfitería</div>
-            <div class="servicio">Techumbres</div>
-            <div class="servicio">Cerámicas</div>
-            <div class="servicio">Piso Flotante</div>
-            <div class="servicio">Pintura</div>
-            <div class="servicio">Empastado</div>
-            <div class="servicio">Estructuras Metálicas</div>
-            <div class="servicio">Soldadura</div>
-            <div class="servicio">Electricidad</div>
-            <div class="servicio">Radieres</div>
+        <div class="container">
+            <h2>Servicios</h2>
+            <div class="linea"></div>
+            <p class="subtitulo">Todo lo que necesitas para tu hogar o negocio, en un solo maestro de confianza.</p>
+            <div class="grid-servicios">
+                <div class="servicio animar">
+                    <div class="icono">🏗️</div>
+                    <h3>Construcción</h3>
+                    <p>Obras nuevas, ampliaciones y proyectos completos, desde los cimientos hasta las terminaciones.</p>
+                </div>
+                <div class="servicio animar">
+                    <div class="icono">🧱</div>
+                    <h3>Albañilería</h3>
+                    <p>Muros, tabiques, hormigón, estucos y todo tipo de trabajo en albañilería general.</p>
+                </div>
+                <div class="servicio animar">
+                    <div class="icono">🚰</div>
+                    <h3>Gasfitería</h3>
+                    <p>Instalación y reparación de cañerías, llaves, calefón, fugas de agua y sanitarios.</p>
+                </div>
+                <div class="servicio animar">
+                    <div class="icono">🏠</div>
+                    <h3>Techumbres</h3>
+                    <p>Instalación, reparación y mantención de techos: zinc, pizarreño, tejas y más.</p>
+                </div>
+                <div class="servicio animar">
+                    <div class="icono">🔲</div>
+                    <h3>Cerámicas</h3>
+                    <p>Instalación de cerámicas y porcelanatos en baños, cocinas, pisos y muros.</p>
+                </div>
+                <div class="servicio animar">
+                    <div class="icono">🪵</div>
+                    <h3>Piso Flotante</h3>
+                    <p>Instalación profesional de piso flotante, laminado y madera, con terminación impecable.</p>
+                </div>
+                <div class="servicio animar">
+                    <div class="icono">🎨</div>
+                    <h3>Pintura</h3>
+                    <p>Pintura interior y exterior, con preparación previa y materiales de calidad.</p>
+                </div>
+                <div class="servicio animar">
+                    <div class="icono">🖌️</div>
+                    <h3>Empastado</h3>
+                    <p>Empastado y preparación de muros para un acabado liso y perfecto antes de pintar.</p>
+                </div>
+                <div class="servicio animar">
+                    <div class="icono">⚙️</div>
+                    <h3>Estructuras Metálicas</h3>
+                    <p>Fabricación e instalación de estructuras, rejas, portones, escaleras y cubiertas.</p>
+                </div>
+                <div class="servicio animar">
+                    <div class="icono">🔥</div>
+                    <h3>Soldadura</h3>
+                    <p>Soldadura eléctrica y autógena para todo tipo de trabajos en metal, en obra o taller.</p>
+                </div>
+                <div class="servicio animar">
+                    <div class="icono">💡</div>
+                    <h3>Electricidad</h3>
+                    <p>Instalaciones eléctricas, enchufes, luminarias, tableros y reparaciones en general.</p>
+                </div>
+                <div class="servicio animar">
+                    <div class="icono">🧱</div>
+                    <h3>Radieres</h3>
+                    <p>Construcción de radieres, losas y pavimentos de hormigón para patios, galpones y más.</p>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- POR QUÉ ELEGIRME -->
+    <section class="porque">
+        <div class="container">
+            <h2>¿Por Qué Elegirme?</h2>
+            <div class="linea"></div>
+            <div class="grid-porque">
+                <div class="porque-item animar">
+                    <div class="icono">✅</div>
+                    <h3>40 Años de Experiencia</h3>
+                    <p>Cuatro décadas de oficio respaldan cada trabajo que realizo.</p>
+                </div>
+                <div class="porque-item animar">
+                    <div class="icono">🤝</div>
+                    <h3>Trato Directo</h3>
+                    <p>Sin intermediarios. Hablas directamente con quien hace el trabajo.</p>
+                </div>
+                <div class="porque-item animar">
+                    <div class="icono">💰</div>
+                    <h3>Presupuesto Sin Compromiso</h3>
+                    <p>Visito tu proyecto, evalúo y te doy un presupuesto claro, sin costo.</p>
+                </div>
+                <div class="porque-item animar">
+                    <div class="icono">⏱️</div>
+                    <h3>Plazos Respetados</h3>
+                    <p>Cumplo con los tiempos acordados. Tu tiempo también vale.</p>
+                </div>
+                <div class="porque-item animar">
+                    <div class="icono">🛡️</div>
+                    <h3>Trabajo Garantizado</h3>
+                    <p>Si algo no queda bien, lo corrijo. Mi reputación está en juego.</p>
+                </div>
+                <div class="porque-item animar">
+                    <div class="icono">🧰</div>
+                    <h3>Todo en Uno</h3>
+                    <p>Múltiples especialidades en un solo maestro, ahorras tiempo y dinero.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section class="proceso">
+        <div class="container">
+            <h2>Cómo Trabajo</h2>
+            <div class="linea"></div>
+            <p class="subtitulo">Un proceso simple, claro y sin sorpresas.</p>
+            <div class="pasos">
+                <div class="paso animar">
+                    <div class="num">1</div>
+                    <h3>Contacto</h3>
+                    <p>Me llamas o escribes por WhatsApp y me cuentas qué necesitas.</p>
+                </div>
+                <div class="paso animar">
+                    <div class="num">2</div>
+                    <h3>Visita y Presupuesto</h3>
+                    <p>Voy a ver el trabajo en terreno y te entrego un presupuesto claro, sin costo.</p>
+                </div>
+                <div class="paso animar">
+                    <div class="num">3</div>
+                    <h3>Ejecución</h3>
+                    <p>Realizo el trabajo con materiales de calidad y en el plazo acordado.</p>
+                </div>
+                <div class="paso animar">
+                    <div class="num">4</div>
+                    <h3>Entrega</h3>
+                    <p>Revisas el trabajo terminado. Si algo no te convence, lo ajusto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRABAJOS -->
     <section id="trabajos" class="trabajos">
-        <h2>Trabajos Finalizados</h2>
-        <div class="grid-fotos">
-            <div class="foto-card">
-                <img src="images/1000172035.jpg" alt="Techumbre instalada">
-                <p>Techumbre en vivienda unifamiliar</p>
+        <div class="container">
+            <h2>Trabajos Finalizados</h2>
+            <div class="linea"></div>
+            <p class="subtitulo">Algunos de los proyectos que he realizado. Cada trabajo habla por sí solo.</p>
+            <div class="grid-fotos">
+                <div class="foto-card animar">
+                    <img src="images/1000172035.jpg" alt="Trabajo de construcción">
+                    <p>Techumbre en vivienda unifamiliar</p>
+                </div>
+                <div class="foto-card animar">
+                    <img src="images/1000173631.jpg" alt="Trabajo de cerámica">
+                    <p>Cerámica en baño completo</p>
+                </div>
+                <div class="foto-card animar">
+                    <img src="images/1000173634.jpg" alt="Piso flotante instalado">
+                    <p>Piso flotante en departamento</p>
+                </div>
+                <div class="foto-card animar">
+                    <img src="images/1000173636.jpg" alt="Trabajo de techumbre">
+                    <p>Techumbre en vivienda unifamiliar</p>
+                </div>
+                <div class="foto-card animar">
+                    <img src="images/1000173640.jpg" alt="Cerámica instalada">
+                    <p>Cerámica en baño completo</p>
+                </div>
+                <div class="foto-card animar">
+                    <img src="images/1000173642.jpg" alt="Piso flotante">
+                    <p>Piso flotante en departamento</p>
+                </div>
+                <div class="foto-card animar">
+                    <img src="images/1000173646.jpg" alt="Techumbre">
+                    <p>Techumbre en vivienda unifamiliar</p>
+                </div>
+                <div class="foto-card animar">
+                    <img src="images/1000173647.jpg" alt="Cerámica baño">
+                    <p>Cerámica en baño completo</p>
+                </div>
+                <div class="foto-card animar">
+                    <img src="images/1000173650.jpg" alt="Piso flotante">
+                    <p>Piso flotante en departamento</p>
+                </div>
+                <div class="foto-card animar">
+                    <img src="images/1000173653.jpg" alt="Techumbre">
+                    <p>Techumbre en vivienda unifamiliar</p>
+                </div>
+                <div class="foto-card animar">
+                    <img src="images/1000173662.jpg" alt="Cerámica">
+                    <p>Cerámica en baño completo</p>
+                </div>
+                <div class="foto-card animar">
+                    <img src="images/1000173664.jpg" alt="Piso flotante">
+                    <p>Piso flotante en departamento</p>
+                </div>
             </div>
-            <div class="foto-card">
-                <img src="images/1000173631.jpg" alt="Cerámica baño">
-                <p>Cerámica en baño completo</p>
-            </div>
-            <div class="foto-card">
-                <img src="images/1000173634.jpg" alt="Piso flotante">
-                <p>Piso flotante en departamento</p>
-            </div>
-            <div class="foto-card">
-                <img src="images/1000173636.jpg" alt="Techumbre instalada">
-                <p>Techumbre en vivienda unifamiliar</p>
-            </div>
-            <div class="foto-card">
-                <img src="images/1000173640.jpg" alt="Cerámica baño">
-                <p>Cerámica en baño completo</p>
-            </div>
-            <div class="foto-card">
-                <img src="images/1000173642.jpg" alt="Piso flotante">
-                <p>Piso flotante en departamento</p>
-            </div>
-            <div class="foto-card">
-                <img src="images/1000173646.jpg" alt="Techumbre instalada">
-                <p>Techumbre en vivienda unifamiliar</p>
-            </div>
-            <div class="foto-card">
-                <img src="images/1000173647.jpg" alt="Cerámica baño">
-                <p>Cerámica en baño completo</p>
-            </div>
-            <div class="foto-card">
-                <img src="images/1000173650.jpg" alt="Piso flotante">
-                <p>Piso flotante en departamento</p>
-            </div>
-            <div class="foto-card">
-                <img src="images/1000173653.jpg" alt="Techumbre instalada">
-                <p>Techumbre en vivienda unifamiliar</p>
-            </div>
-            <div class="foto-card">
-                <img src="images/1000173662.jpg" alt="Cerámica baño">
-                <p>Cerámica en baño completo</p>
-            </div>
-            <div class="foto-card">
-                <img src="images/1000173664.jpg" alt="Piso flotante">
-                <p>Piso flotante en departamento</p>
-            </div>
-            <!-- Agrega más bloques según tus fotos -->
         </div>
     </section>
 
-    <section id="contacto" class="contacto">
-        <h2>Contacto</h2>
-        <p>Llama o escribe para coordinar una visita sin costo.</p>
-        <p style="margin-top: 1rem;">
-            📞 <a href="tel:+56912345678">+56 9 1234 5678</a><br>
-            📧 <a href="mailto:tu-correo@ejemplo.com">tu-correo@ejemplo.com</a><br>
-            💬 <a href="https://wa.me/56912345678">WhatsApp</a>
-        </p>
+    <!-- TESTIMONIOS -->
+    <section id="testimonios" class="testimonios">
+        <div class="container">
+            <h2>Lo Que Dicen Mis Clientes</h2>
+            <div class="linea"></div>
+            <p class="subtitulo">La mejor carta de presentación son los clientes satisfechos.</p>
+            <div class="grid-testimonios">
+                <div class="testimonio animar">
+                    <div class="estrellas">★★★★★</div>
+                    <p>"Don Claudio hizo la techumbre completa de mi casa. Trabajó rápido, limpio y con materiales de buena calidad. Muy recomendable."</p>
+                    <div class="autor">— María González, Ñuñoa</div>
+                </div>
+                <div class="testimonio animar">
+                    <div class="estrellas">★★★★★</div>
+                    <p>"Nos instaló el piso flotante de todo el departamento. Quedó perfecto, sin detalles. Cumplió con los plazos prometidos."</p>
+                    <div class="autor">— Pedro Ramírez, Santiago Centro</div>
+                </div>
+                <div class="testimonio animar">
+                    <div class="estrellas">★★★★★</div>
+                    <p>"Llevo años contratándolo para reparaciones en mi negocio. Es un maestro serio, honesto y que sabe lo que hace."</p>
+                    <div class="autor">— Carolina Silva, Providencia</div>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2>Preguntas Frecuentes</h2>
+            <div class="linea"></div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item">
+                    <h3>¿La visita y el presupuesto tienen costo?</h3>
+                    <div class="respuesta">No, la visita a terreno y el presupuesto son completamente gratis y sin compromiso. Solo cobro si decides contratarme.</div>
+                </div>
+                <div class="faq-item">
+                    <h3>¿En qué comunas trabajas?</h3>
+                    <div class="respuesta">Trabajo principalmente en Santiago y comunas cercanas. Consulta por tu ubicación específica y te confirmo sin problema.</div>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Los materiales los pongo yo o tú?</h3>
+                    <div class="respuesta">Puede ser de las dos formas. Puedo encargarme de comprar los materiales o tú los compras. En el presupuesto te detallo ambas opciones.</div>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Cuánto tiempo demora un trabajo?</h3>
+                    <div class="respuesta">Depende de cada proyecto. Trabajos pequeños pueden ser de un día; remodelaciones más grandes, de una a varias semanas. En el presupuesto te doy un plazo claro.</div>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Haces boleta o factura?</h3>
+                    <div class="respuesta">Sí, puedo emitir boleta. Si necesitas factura, consúltame y lo vemos según el proyecto.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="contacto">
+        <div class="container">
+            <h2>Contáctame</h2>
+            <div class="linea"></div>
+            <p class="subtitulo">Llama, escribe o envía un mensaje. Te responderé a la brevedad para coordinar una visita sin costo.</p>
+            <div class="contacto-grid">
+                <div class="contacto-item">
+                    <div class="icono">📞</div>
+                    <p><strong>Teléfono</strong></p>
+                    <a href="tel:+56912345678">+56 9 1234 5678</a>
+                </div>
+                <div class="contacto-item">
+                    <div class="icono">💬</div>
+                    <p><strong>WhatsApp</strong></p>
+                    <a href="https://wa.me/56912345678?text=Hola%20Claudio,%20necesito%20un%20presupuesto" target="_blank">Escríbeme aquí</a>
+                </div>
+                <div class="contacto-item">
+                    <div class="icono">📧</div>
+                    <p><strong>Correo</strong></p>
+                    <a href="mailto:tu-correo@ejemplo.com">tu-correo@ejemplo.com</a>
+                </div>
+            </div>
+            <p class="cta-final">Atención de lunes a sábado. Presupuesto sin costo ni compromiso.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Claudio Francisco Cañas — Maestro de Obra. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Botón flotante WhatsApp -->
+    <a href="https://wa.me/56912345678?text=Hola%20Claudio,%20necesito%20un%20presupuesto" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">💬</a>
+
+    <!-- Scripts -->
+    <script>
+        // Animación de aparición al hacer scroll
+        const elementos = document.querySelectorAll('.animar');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        elementos.forEach(el => observer.observe(el));
+
+        // FAQ desplegable
+        document.querySelectorAll('.faq-item h3').forEach(pregunta => {
+            pregunta.addEventListener('click', () => {
+                pregunta.parentElement.classList.toggle('abierto');
+            });
+        });
+
+        // Lightbox simple: al hacer clic en una foto, se abre en grande
+        document.querySelectorAll('.foto-card img').forEach(img => {
+            img.addEventListener('click', () => {
+                const overlay = document.createElement('div');
+                overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;padding:1rem;';
+                const imagen = document.createElement('img');
+                imagen.src = img.src;
+                imagen.style.cssText = 'max-width:95%;max-height:95%;border-radius:8px;';
+                overlay.appendChild(imagen);
+                overlay.addEventListener('click', () => overlay.remove());
+                document.body.appendChild(overlay);
+            });
+        });
+    </script>
 
 </body>
 </html>
